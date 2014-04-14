@@ -2,12 +2,28 @@
 <html>
   <head>
     <title>PedalBoard - CS591 Project</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="assets/css/helpers.css">
   </head>
-  <body>
-    <h1>PedalBoard Project</h1>
-
-
+  <body class="container">
 
     <script data-main="assets/js/main" src="assets/js/libs/requirejs/require.js"></script>
+
+    <!-- App Template -->
+    <script type="text/template" id="app-template">
+      <h1 class="center">PedalBoard Project</h1>
+      <div class="pedalboard"></div>
+    </script>
+
+    <!-- Delay View Template -->
+    <script type="text/template" id="delay-view-template">
+      <h4>Delay Pedal</h4>
+      <ul>
+        <li>Delay Time: <input name="delayTime"></li>
+        <li>Feedback Gain: <input name="feedbackGain"></li>
+        <li>Wet Gain: <input name="feedbackGain"></li>
+      </ul>
+    </script>
   </body>
 </html>
