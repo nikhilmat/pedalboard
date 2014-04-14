@@ -3,7 +3,8 @@
   window.PB = {
     microphone : {
 
-    }
+    },
+    effects : []
   };
 
   PB.initialize = function() {
@@ -44,5 +45,6 @@ $(function() {
   PB.initialize();
   PB.setupMicrophone();
 
-  var test = new SlapbackDelayNode();
+  var delay = new SlapbackDelay();
+  PB.effects.push(delay);
 });
