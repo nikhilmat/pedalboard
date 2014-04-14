@@ -19,5 +19,13 @@ var SlapbackDelay = function(delayTime, feedbackGain, wetGain) {
 
   pedal.connect();
 
+  $('input[name="delayTime"]').keypress(function(e) {
+    if (e.which == 13) {
+      debugger;
+      pedal.delay.delayTime.value = $(e.target).val();
+    }
+  });
+  
   return pedal;
+
 };
