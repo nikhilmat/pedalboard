@@ -18,6 +18,6 @@ require.config({
     waitSeconds: 10
 });
 
-require(['jquery', 'underscore', 'backbone', 'views/app', 'PB'], function(jquery, _, Backbone, App){
+require(['views/app', 'PB'], function(App){
     new App;
 });

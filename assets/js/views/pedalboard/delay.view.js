@@ -1,25 +1,29 @@
-define(["backbone"], function(Backbone){
+define(["backbone", "models/delay.pedal"], function(Backbone, DelayPedal){
     var DelayView = Backbone.View.extend({
-        initialize: function() {
-            this.model.connect();
-            this.render();
-        },
         
+        tagName: 'div',
+        className: 'pedal',
+
+        initialize: function(options) {
+            this.model = this.model || new DelayPedal({});
+        },
+
         template: _.template($('#delay-view-template').html(), {}),
 
         events: {
-            'keypress input' : 'updateDelaySettings'
+            'keypress input' : 'updateSettings'
         },
 
         render: function() {
-            this.$el.append(this.template);
+            $(this.el).html(this.template);
+            return this;
         },
 
-        updateDelaySettings: function(e) {
+        updateSettings: function(e) {
             if (e.which == 13) {
                 var options = {};
                 options[$(e.target).attr('name')] = parseFloat($(e.target).val());
-                this.model.update(options);
+                this.model.set(options);
             }
         }
     });

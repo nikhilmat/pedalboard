@@ -1,7 +1,12 @@
 define(["backbone"], function(Backbone){
     var Pedal = Backbone.Model.extend({
-        input: PB.microphone.gainNode,
-        output: PB.context.createGainNode(),
+
+        initialize: function(options) {
+            this.input = options.input || PB.microphone.gainNode;
+            this.output = options.output || PB.context.createGainNode();
+
+            this.setupPedal();
+        },
 
         connect: function () {
             this.output.connect(PB.out);
