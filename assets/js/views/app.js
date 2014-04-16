@@ -1,4 +1,4 @@
-define(["backbone", "models/delay.pedal", "views/pedalboard/delay.view"], function(Backbone, DelayPedal, DelayView){
+define(["backbone", "views/pedalboard"], function(Backbone, Pedalboard){
     var App = Backbone.View.extend({
         
         el: 'body',
@@ -6,9 +6,9 @@ define(["backbone", "models/delay.pedal", "views/pedalboard/delay.view"], functi
         initialize: function() {
             this.render();
 
-            this.delayView = new DelayView();
-
-            this.$el.append(this.delayView.render().el);
+            this.pedalboard = new Pedalboard({
+                el: '.pedalboard'
+            });
         },
 
         template: _.template($('#app-template').html(), {}),

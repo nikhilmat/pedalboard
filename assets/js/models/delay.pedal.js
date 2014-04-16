@@ -27,7 +27,6 @@ define(["underscore", "backbone", "models/pedal"], function(_, Backbone, Pedal){
         },
 
         setPedalSettings: function() {
-            debugger;
             this.delay.delayTime.value = this.get('delayTime');
             this.feedback.gain.value = this.get('feedbackGain');
             this.decay.gain.value = this.get('decayLevel');
