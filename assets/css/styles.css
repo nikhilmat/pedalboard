@@ -1,0 +1,26 @@
+.pedal {
+  border: 1px solid #cdcdcd;
+  padding: 20px;
+  float: left;
+  min-width: 350px;
+  margin: 10px;
+  min-height: 300px;
+}
+
+.pedal h4 {
+  text-align: center;
+  border-bottom: 1px solid #cdcdcd;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+
+#tuner .pitch {
+  width: 100px;
+  height: 100px;
+  font-size: 40px;
+  border: 1px solid #cdcdcd;
+  text-align: center;
+  line-height: 100px;
+  margin: 0 auto;
+}
