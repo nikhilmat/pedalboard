@@ -19,15 +19,17 @@ define(["backbone", "views/pedalboard/pedal.view", "models/tuner.pedal"], functi
         },
 
         showPitch: function() {
-            if (this.model.confidence < 10) {
+            if (this.model.confidence < 10 || !this.model.get('activated')) {
                 $(this.el).find('.pitch').html('');
             } else {
-                $(this.el).find('.pitch').html(this.model.notes[this.model.note%12]);                
+                $(this.el).find('.pitch').html(this.model.notes[this.model.get('note')%12]);                
             }
             this.canvas.clearRect(0,0,300,100);
 
-            this.canvas.fillStyle = (this.model.detune < 0) ? 'red' : 'green';
-            this.canvas.fillRect(150, 0, this.model.detune*3, 100);
+            if (this.model.get('activated')) {
+                this.canvas.fillStyle = (this.model.get('detune') < 0) ? 'red' : 'green';
+                this.canvas.fillRect(150, 0, this.model.get('detune')*3, 100);            
+            }
         }
     });
 

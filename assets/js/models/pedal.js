@@ -9,10 +9,12 @@ define(["backbone"], function(Backbone){
         },
 
         connect: function () {
+            this.set('activated', true);
             this.output.connect(PB.out);
         },
 
         disconnect: function () {
+            this.set('activated', false);
             this.output.disconnect();
         }
     });

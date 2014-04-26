@@ -7,6 +7,8 @@ define(["underscore", "backbone", "models/pedal"], function(_, Backbone, Pedal){
     TunerPedal = Pedal.extend({
 
         setupPedal: function() {
+            this.input.connect(this.output);
+
             this.analyser = PB.context.createAnalyser();
             this.analyser.fftSize = 2048;
             this.buf = new Uint8Array(2048);
@@ -22,20 +24,17 @@ define(["underscore", "backbone", "models/pedal"], function(_, Backbone, Pedal){
         },
 
         connect: function () {
-            this.input.connect(this.analyser);
-        },
-
-        disconnect: function() {
-            this.input.disconnect();
+            this.set('activated', true);
+            this.output.connect(this.analyser);
         },
 
         updatePitch: function() {
             this.analyser.getByteTimeDomainData(this.buf);
             this.autoCorrelate();
-            this.note = this.noteFromPitch();
-            this.detune = this.centsOffFromPitch(this.note);
-            
-            this.trigger('change');
+            this.set({
+                note: this.noteFromPitch(),
+                detune: this.centsOffFromPitch()
+            });
         },
 
         autoCorrelate: function() {
@@ -70,7 +69,6 @@ define(["underscore", "backbone", "models/pedal"], function(_, Backbone, Pedal){
             if ((rms>0.01)&&(best_correlation > 0.01)) {
                 this.confidence = best_correlation * rms * 10000;
                 this.currentPitch = PB.context.sampleRate/best_offset;
-                console.log("f = " + PB.context.sampleRate/best_offset + "Hz (rms: " + rms + " confidence: " + best_correlation + ")")
             }
         },
 
@@ -79,12 +77,12 @@ define(["underscore", "backbone", "models/pedal"], function(_, Backbone, Pedal){
             return Math.round(noteNum) + 69;
         },
 
-        frequencyFromNoteNumber: function(note) {
-            return 440 * Math.pow(2,(note-69)/12);
+        frequencyFromNoteNumber: function() {
+            return 440 * Math.pow(2,(this.get('note')-69)/12);
         },
 
-        centsOffFromPitch: function (note) {
-            return ( 1200 * Math.log( this.currentPitch / this.frequencyFromNoteNumber( note ))/Math.log(2) );
+        centsOffFromPitch: function () {
+            return ( 1200 * Math.log( this.currentPitch / this.frequencyFromNoteNumber( this.get('note') ))/Math.log(2) );
         }
     });
 
