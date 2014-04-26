@@ -3,12 +3,8 @@ define(["backbone", "views/pedalboard/delay.view", "views/pedalboard/tuner.view"
     
         initialize: function(options) {
             this.render();
-
-            this.delayView = new DelayView();
-            this.$el.append(this.delayView.render().el);
-            this.tunerView = new TunerView();
-            this.$el.append(this.tunerView.render().el);
-
+            this.createTuner();
+            this.createDelay();
         },
 
         template: _.template($('#pedalboard-template').html(), {}),
@@ -17,6 +13,16 @@ define(["backbone", "views/pedalboard/delay.view", "views/pedalboard/tuner.view"
             this.$el.html(this.template);
             return this;
         },
+
+        createTuner: function() {
+            this.tunerView = new TunerView();
+            this.$el.append(this.tunerView.render().el);
+        },
+
+        createDelay: function() {
+            this.delayView = new DelayView();
+            this.$el.append(this.delayView.render().el);
+        }
     });
 
     return Pedalboard;
