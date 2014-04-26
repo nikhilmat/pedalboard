@@ -1,8 +1,6 @@
-define(["backbone", "models/tuner.pedal"], function(Backbone, TunerPedal){
-    var TunerView = Backbone.View.extend({
-        
-        tagName: 'div',
-        className: 'pedal',
+define(["backbone", "views/pedalboard/pedal.view", "models/tuner.pedal"], function(Backbone, PedalView, TunerPedal){
+    var TunerView = PedalView.extend({
+
         id: 'tuner',
 
         initialize: function(options) {
@@ -16,6 +14,7 @@ define(["backbone", "models/tuner.pedal"], function(Backbone, TunerPedal){
 
         render: function() {
             $(this.el).html(this.template);
+            this.canvas = $(this.el).find('.detune')[0].getContext('2d');
             return this;
         },
 
@@ -25,7 +24,10 @@ define(["backbone", "models/tuner.pedal"], function(Backbone, TunerPedal){
             } else {
                 $(this.el).find('.pitch').html(this.model.notes[this.model.note%12]);                
             }
-            $(this.el).find('.detune').html(this.model.detune)
+            this.canvas.clearRect(0,0,300,100);
+
+            this.canvas.fillStyle = (this.model.detune < 0) ? 'red' : 'green';
+            this.canvas.fillRect(150, 0, this.model.detune*3, 100);
         }
     });
 

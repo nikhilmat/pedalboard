@@ -5,6 +5,7 @@
   min-width: 350px;
   margin: 10px;
   min-height: 300px;
+  position: relative;
 }
 
 .pedal h4 {
@@ -14,6 +15,17 @@
   margin-bottom: 20px;
 }
 
+.pedal .btn.toggle {
+  display: block;
+  margin: 0 auto;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  position: absolute;
+  bottom: 25px;
+  right: 50%;
+  -webkit-transform: translate(50%, 0);
+}
 
 #tuner .pitch {
   width: 100px;
@@ -23,4 +35,10 @@
   text-align: center;
   line-height: 100px;
   margin: 0 auto;
+}
+
+#tuner canvas.detune {
+  width: 300px;
+  height: 20px;
+  margin-top: 10px;
 }

@@ -23,7 +23,6 @@ define(["underscore", "backbone", "models/pedal"], function(_, Backbone, Pedal){
             this.feedback.connect(this.delay);
             this.decay.connect(this.output);
 
-            this.connect();
             this.on('change', this.setPedalSettings);
         },
 

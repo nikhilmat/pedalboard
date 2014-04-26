@@ -9,7 +9,6 @@ define(["underscore", "backbone", "models/pedal"], function(_, Backbone, Pedal){
         setupPedal: function() {
             this.analyser = PB.context.createAnalyser();
             this.analyser.fftSize = 2048;
-            this.input.connect(this.analyser);
             this.buf = new Uint8Array(2048);
 
             this.notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
@@ -20,6 +19,14 @@ define(["underscore", "backbone", "models/pedal"], function(_, Backbone, Pedal){
             window.setInterval(function() {
                 self.updatePitch();
             }, 50);
+        },
+
+        connect: function () {
+            this.input.connect(this.analyser);
+        },
+
+        disconnect: function() {
+            this.input.disconnect();
         },
 
         updatePitch: function() {
