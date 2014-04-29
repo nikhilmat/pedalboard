@@ -26,6 +26,16 @@ define(["underscore", "backbone", "models/pedal"], function(_, Backbone, Pedal){
             this.on('change', this.setPedalSettings);
         },
 
+        connect: function() {
+            PB.connect();
+            Pedal.prototype.connect.call(this);
+        },
+
+        disconnect: function() {
+            PB.disconnect();
+            Pedal.prototype.disconnect.call(this);
+        },
+
         setPedalSettings: function() {
             this.delay.delayTime.value = this.get('delayTime');
             this.feedback.gain.value = this.get('feedbackGain');

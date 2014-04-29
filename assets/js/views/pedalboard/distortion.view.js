@@ -1,13 +1,12 @@
-define(["backbone", "views/pedalboard/pedal.view", "models/delay.pedal", "jquery-ui"], function(Backbone, PedalView, DelayPedal){
-    var DelayView = PedalView.extend({
-        id: 'delay',
+define(["backbone", "views/pedalboard/pedal.view", "models/distortion.pedal", "jquery-ui"], function(Backbone, PedalView, DistortionPedal){
+    var DistortionView = PedalView.extend({
+        id: 'distortion',
 
         initialize: function(options) {
-            this.model = this.model || new DelayPedal({});
-            window.delay = this.model;
+            this.model = this.model || new DistortionPedal({});
         },
 
-        template: _.template($('#delay-view-template').html(), {}),
+        template: _.template($('#distortion-view-template').html(), {}),
 
         render: function() {
             $(this.el).html(this.template);
@@ -25,12 +24,12 @@ define(["backbone", "views/pedalboard/pedal.view", "models/delay.pedal", "jquery
                 orientation: 'vertical',
                 slide: function( event, ui ) {
                     var options = {};
-                    options[$(ui.handle).parent().data('name')] = ui.value/100.0;
-                    self.model.set(options)
+                    options[$(ui.handle).parent().data('name')] = ui.value;
+                    self.model.set(options);
                 }
             });
         }
     });
 
-    return DelayView;
+    return DistortionView;
 });

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="assets/css/helpers.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/jquery.ui.min.css">
   </head>
   <body class="container">
 
@@ -14,26 +15,47 @@
     <!-- App Template -->
     <script type="text/template" id="app-template">
       <h1 class="center">PedalBoard Project</h1>
+      <hr />
       <div class="pedalboard"></div>
     </script>
 
     <script type="text/template" id="pedalboard-template">
-      <h5>Pedalboard</h5>
     </script>
     
     <!-- Delay View Template -->
     <script type="text/template" id="delay-view-template">
-      <h4>Delay Pedal</h4>
-      <ul>
-        <li>Delay Time: <input name="delayTime" value="0.5"></li>
-        <li>Feedback Gain: <input name="feedbackGain" value="0.5"></li>
-        <li>Wet Gain: <input name="feedbackGain" value="0.5"></li>
-      </ul>
+      <h4>Delay</h4>
+      <div class="slider-container">
+        <div class="slider" data-name="delayTime"></div>
+        <h6>Delay</h6>
+      </div>
+      <div class="slider-container">
+        <div class="slider" data-name="feedbackGain"></div>
+        <h6>Feedback</h6>
+      </div>
+      <div class="slider-container">
+        <div class="slider" data-name="decayLevel"></div>
+        <h6>Decay</h6>
+      </div>
+
+      <div class="btn btn-default toggle"></div>
+    </script>
+
+    <script type="text/template" id="distortion-view-template">
+      <h4>Distortion</h4>
+      <div class="slider-container">
+        <div class="slider" data-name="gain"></div>
+        <h6>Gain</h6>
+      </div>
+      <div class="slider-container">
+        <div class="slider" data-name="volume" data-max="3" data-value="1"></div>
+        <h6>Volume</h6>
+      </div>
       <div class="btn btn-default toggle"></div>
     </script>
 
     <script type="text/template" id="tuner-view-template">
-      <h4>Tuner Pedal</h4>
+      <h4>Tuner</h4>
 
       <div class="pitch"></div>
       <canvas class="detune"></canvas>

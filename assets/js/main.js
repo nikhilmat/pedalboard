@@ -2,6 +2,7 @@ require.config({
     paths: {
         "jquery": ["http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min",
                     "libs/jquery/jquery"],
+        "jquery-ui": "libs/jquery.ui.min",
         "underscore": "libs/underscore/underscore",
         "backbone": "libs/backbone/backbone",
         "bootstrap": "libs/bootstrap.min"
@@ -12,6 +13,9 @@ require.config({
             exports: "Backbone"
         },
         "bootstrap": {
+            deps: ["jquery"]
+        },
+        "jquery-ui": {
             deps: ["jquery"]
         }
     },

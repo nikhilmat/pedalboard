@@ -18,7 +18,7 @@ define(function(require) {
   PB.microphone.analyzer.smoothingTimeConstant = 0.7;
   PB.microphone.analyzer.fftSize = 128;
   PB.microphone.gainNode.connect(PB.microphone.analyzer);
-  PB.microphone.analyzer.connect(PB.out);
+  // PB.microphone.analyzer.connect(PB.out);
 
   PB.setupMicrophone = function() {
     var app = this;
@@ -31,6 +31,13 @@ define(function(require) {
     });
   }
 
+  PB.connect = function() {
+    this.microphone.analyzer.connect(PB.out);    
+  }
+
+  PB.disconnect = function() {
+    this.microphone.analyzer.disconnect();
+  }
   // TODO: Make an "on" switch
   PB.setupMicrophone();
 });
