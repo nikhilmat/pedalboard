@@ -3,8 +3,8 @@ require.config({
         "jquery": ["http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min",
                     "libs/jquery.min"],
         "jquery-ui": "libs/jquery.ui.min",
-        "underscore": "libs/underscore/underscore",
-        "backbone": "libs/backbone/backbone",
+        "underscore": "libs/underscore.min",
+        "backbone": "libs/backbone.min",
         "bootstrap": "libs/bootstrap.min"
     },
     shim: {
